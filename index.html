@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: #B0E8A7
+            background: #B0E8A7;
             color: #2d3748;
             display: flex;
             justify-content: center;
@@ -111,25 +111,26 @@
             { question: "11. What is Zenji's little doll name?", answer: "saburo" },
             { question: "12. Whose the Mc's curse twin?", answer: "rui Mizuki" },
             { question: "13. What house did Tohma og belong to?", answer: "vagastrom" },
-            { quesiton: "14. Who did Leo attend middle school with?", answer: "Shohei Haizono" },
+            { question: "14. Who did Leo attend middle school with?", answer: "Shohei Haizono" },
             { question: "15. What restaurant did Haku wanted to open if he could leave? Note: Two worded answer, second word is restaurant ", answer: "ramen restaurant" },
             { question: "16. Who did Subaru visit across the hotarubi's lake?", answer: "Lyca Colt" },
-            { quesiton: "17. What does Towa call MC? ", answer: "dandelion " },
+            { question: "17. What does Towa call MC? ", answer: "dandelion" },
             { question: "18. What blood type is Taiga?", answer: "O" },
             { question: "19. What star sign is Kaito?", answer: "sagittarius" },
-            { quesiton: "20. What pocket does Ritsu keep his recorder?", answer: "left" },
-            { quesiton: "21. Did Lucas flipped/body slam Kaito into the ground in the first episode? ", answer: "yes" },
+            { question: "20. What pocket does Ritsu keep his recorder?", answer: "left" },
+            { question: "21. Did Lucas flipped/body slam Kaito into the ground in the first episode? ", answer: "yes" },
             { question: "22. What fae type is Edward?", answer: "vampire" },
             { question: "23. How many dots dose Shion have under his eye?", answer: "3" },
-            { quewsiton: "24. What is the name of Sho's artifact?", answer: "Bonnie" },
-            { quesiton: "25. Who built majority of the gambling machine in sinostra?", answer: "Mio Susuhara" }
+            { question: "24. What is the name of Sho's artifact?", answer: "Bonnie" },
+            { question: "25. Who built majority of the gambling machine in sinostra?", answer: "Mio Susuhara" }
         ];
 
         let currentStep = 0;
 
         function updateCard() {
             document.getElementById("progress-text").textContent = `Question ${currentStep + 1} of ${huntData.length}`;
-            document.getElementById("clue-text").textContent = huntData[currentStep].clue;
+            // Fixed property name from .clue to .question
+            document.getElementById("clue-text").textContent = huntData[currentStep].question;
             document.getElementById("answer-input").value = "";
             document.getElementById("feedback-text").textContent = "";
         }
