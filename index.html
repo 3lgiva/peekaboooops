@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>25-Question Digital Scavenger Hunt</title>
+    <title>Project Operation Peekaboo Hunt!</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #2d3748;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -20,54 +20,59 @@
         .card {
             background: #ffffff;
             padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
             max-width: 500px;
             width: 100%;
             text-align: center;
         }
         .progress {
             font-size: 0.9em;
-            color: #666;
+            color: #718096;
             margin-bottom: 20px;
             font-weight: bold;
         }
-        .Question-box {
-            background-color: #eef2f5;
+        .clue-box {
+            background-color: #f7fafc;
             padding: 18px;
-            border-left: 5px solid #007bff;
-            border-radius: 4px;
+            border-left: 5px solid #764ba2;
+            border-radius: 8px;
             margin-bottom: 20px;
             font-size: 1.1em;
             line-height: 1.4;
         }
         input[type="text"] {
             width: 80%;
-            padding: 10px;
+            padding: 12px;
             margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
             font-size: 1em;
+            outline: none;
+        }
+        input[type="text"]:focus {
+            border-color: #764ba2;
         }
         button {
-            padding: 10px 20px;
-            background-color: #007bff;
+            padding: 12px 24px;
+            background-color: #ff6b6b;
             color: white;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
             font-size: 1em;
+            font-weight: bold;
         }
         button:hover {
-            background-color: #0056b3;
+            background-color: #ee5253;
         }
         .feedback {
             margin-top: 15px;
             font-weight: bold;
             min-height: 24px;
         }
-        .correct { color: #28a745; }
-        .incorrect { color: #dc3545; }
+        .correct { color: #10b981; }
+        .incorrect { color: #ef4444; }
         .hidden { display: none; }
     </style>
 </head>
@@ -75,7 +80,7 @@
 
     <div class="card" id="game-card">
         <div class="progress" id="progress-text">Question 1 of 25</div>
-        <div class="Question-box" id="Question-text">Loading Question...</div>
+        <div class="clue-box" id="clue-text">Loading question...</div>
         
         <input type="text" id="answer-input" placeholder="Type your answer here..." autocomplete="off">
         <br>
@@ -86,45 +91,45 @@
 
     <div class="card hidden" id="victory-card">
         <h2>🎉 Ultimate Champion!</h2>
-        <p>You successfully solved all 25 Questions and finished the scavenger hunt!</p>
+        <p>You successfully answered all 25 questions!</p>
         <button onclick="restartGame()">Play Again</button>
     </div>
 
     <script>
         // 25 Questions and accepted answers
         const huntData = [
-            { Question: "1. I have hands, but I cannot clap. What am I?", answer: "clock" },
-            { Question: "2. The more of me you take, the more you leave behind. What am I?", answer: "footsteps" },
-            { Question: "3. I have a neck, but no head. What am I?", answer: "bottle" },
-            { Question: "4. What has to be broken before you can use it?", answer: "egg" },
-            { Question: "5. I’m tall when I’m young, and I’m short when I’m old. What am I?", answer: "candle" },
-            { Question: "6. What is full of holes but still holds water?", answer: "sponge" },
-            { Question: "7. What question can you never answer yes to?", answer: "are you asleep" },
-            { Question: "8. What is always in front of you but can’t be seen?", answer: "future" },
-            { Question: "9. There’s a one-story house where everything is yellow. What color are the stairs?", answer: "no stairs" },
-            { Question: "10. What can you break, even if you never pick it up or touch it?", answer: "promise" },
-            { Question: "11. What goes up but never comes down?", answer: "age" },
-            { Question: "12. A man walks out into the pouring rain without an umbrella or hat, but not a single hair on his head gets wet. Why?", answer: "bald" },
-            { Question: "13. What gets wet while drying?", answer: "towel" },
-            { Question: "14. What can you keep after giving it to someone?", answer: "word" },
-            { Question: "15. I shaved 10 times today, but I still have a beard. What am I?", answer: "barber" },
-            { Question: "16. I have branches, but no fruit, trunk, or leaves. What am I?", answer: "bank" },
-            { Question: "17. What can’t talk, but will reply when spoken to?", answer: "echo" },
-            { Question: "18. The more of this there is, the less you see. What is it?", answer: "darkness" },
-            { Question: "19. David’s parents have three sons: Snap, Crackle, and what's the name of the third son?", answer: "david" },
-            { Question: "20. What has many keys but can’t open a single lock?", answer: "piano" },
-            { Question: "21. What can travel all around the world while staying in a corner?", answer: "stamp" },
-            { Question: "22. What has a head and a tail, but no body?", answer: "coin" },
-            { Question: "23. What has a thumb and four fingers, but is not a living thing?", answer: "glove" },
-            { Question: "24. What has one eye, but can’t see?", answer: "needle" },
-            { Question: "25. What comes once in a minute, twice in a moment, but never in a thousand years?", answer: "m" }
+            { clue: "1. What is the capital city of France?", answer: "paris" },
+            { clue: "2. What planet is known as the Red Planet?", answer: "mars" },
+            { clue: "3. How many sides does a hexagon have?", answer: "6" },
+            { clue: "4. What gas do plants absorb from the atmosphere for photosynthesis?", answer: "carbon dioxide" },
+            { clue: "5. What is the largest ocean on Earth?", answer: "pacific" },
+            { clue: "6. Who painted the Mona Lisa?", answer: "da vinci" },
+            { clue: "7. What chemical element has the symbol 'O'?", answer: "oxygen" },
+            { clue: "8. What is the hardest natural substance on Earth?", answer: "diamond" },
+            { clue: "9. Which primary color combined with blue makes green?", answer: "yellow" },
+            { clue: "10. In what continent is the Sahara Desert located?", answer: "africa" },
+            { clue: "11. What is the tallest mammal in the world?", answer: "giraffe" },
+            { clue: "12. What instrument is used to measure temperature?", answer: "thermometer" },
+            { clue: "13. What is the capital of Japan?", answer: "tokyo" },
+            { clue: "14. How many bones are in the adult human body?", answer: "206" },
+            { clue: "15. Which planet is closest to the Sun?", answer: "mercury" },
+            { clue: "16. What metal is liquid at room temperature?", answer: "mercury" },
+            { clue: "17. What is the largest organ in the human body?", answer: "skin" },
+            { clue: "18. Who wrote the play 'Romeo and Juliet'?", answer: "shakespeare" },
+            { clue: "19. What is the chemical symbol for Gold?", answer: "au" },
+            { clue: "20. What force keeps us grounded on Earth?", answer: "gravity" },
+            { clue: "21. How many continents are on Earth?", answer: "7" },
+            { clue: "22. What animal is known as the King of the Jungle?", answer: "lion" },
+            { clue: "23. What is the freezing point of water in degrees Celsius?", answer: "0" },
+            { clue: "24. What primary language is spoken in Brazil?", answer: "portuguese" },
+            { clue: "25. Which instrument has black and white keys and pedals?", answer: "piano" }
         ];
 
         let currentStep = 0;
 
         function updateCard() {
             document.getElementById("progress-text").textContent = `Question ${currentStep + 1} of ${huntData.length}`;
-            document.getElementById("Question-text").textContent = huntData[currentStep].Question;
+            document.getElementById("clue-text").textContent = huntData[currentStep].clue;
             document.getElementById("answer-input").value = "";
             document.getElementById("feedback-text").textContent = "";
         }
@@ -135,10 +140,9 @@
             const userAnswer = inputField.value.trim().toLowerCase();
             const correctAnswer = huntData[currentStep].answer.toLowerCase();
 
-            // Check if the input contains the answer keyword
             if (userAnswer.includes(correctAnswer) && userAnswer !== "") {
                 feedback.className = "feedback correct";
-                feedback.textContent = "Correct! Moving to the next Question...";
+                feedback.textContent = "Correct! Moving to the next question...";
                 
                 setTimeout(() => {
                     currentStep++;
@@ -166,14 +170,12 @@
             updateCard();
         }
 
-        // Keypress event for Enter key
         document.getElementById("answer-input").addEventListener("keypress", function(event) {
             if (event.key === "Enter") {
                 checkAnswer();
             }
         });
 
-        // Initialize first Question
         updateCard();
     </script>
 
