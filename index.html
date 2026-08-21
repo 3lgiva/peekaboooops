@@ -79,7 +79,7 @@
 <body>
 
     <div class="card" id="game-card">
-        <div class="progress" id="progress-text">Question 1 of 25</div>
+        <div class="progress" id="progress-text">Question 1 of 26</div>
         <div class="clue-box" id="clue-text">Loading question...</div>
         
         <input type="text" id="answer-input" placeholder="Type your answer here..." autocomplete="off">
@@ -90,39 +90,40 @@
     </div>
 
     <div class="card hidden" id="victory-card">
-        <h2>🎉 Ultimate Champion!</h2>
-        <p>You successfully answered all 25 questions!</p>
+        <h2>yolo we ball</h2>
+        <p>if you made it this far, congrats! enter the word "fuck you" and your fav chara into the note section for your freebie! Its worth it I promise LOLL</p>
         <button onclick="restartGame()">Play Again</button>
     </div>
 
     <script>
-        // 25 Questions and accepted answers
+        // 26 Questions and accepted answers
         const huntData = [
-            { clue: "1. What is the capital city of France?", answer: "paris" },
-            { clue: "2. What planet is known as the Red Planet?", answer: "mars" },
-            { clue: "3. How many sides does a hexagon have?", answer: "6" },
-            { clue: "4. What gas do plants absorb from the atmosphere for photosynthesis?", answer: "carbon dioxide" },
-            { clue: "5. What is the largest ocean on Earth?", answer: "pacific" },
-            { clue: "6. Who painted the Mona Lisa?", answer: "da vinci" },
-            { clue: "7. What chemical element has the symbol 'O'?", answer: "oxygen" },
-            { clue: "8. What is the hardest natural substance on Earth?", answer: "diamond" },
-            { clue: "9. Which primary color combined with blue makes green?", answer: "yellow" },
-            { clue: "10. In what continent is the Sahara Desert located?", answer: "africa" },
-            { clue: "11. What is the tallest mammal in the world?", answer: "giraffe" },
-            { clue: "12. What instrument is used to measure temperature?", answer: "thermometer" },
-            { clue: "13. What is the capital of Japan?", answer: "tokyo" },
-            { clue: "14. How many bones are in the adult human body?", answer: "206" },
-            { clue: "15. Which planet is closest to the Sun?", answer: "mercury" },
-            { clue: "16. What metal is liquid at room temperature?", answer: "mercury" },
-            { clue: "17. What is the largest organ in the human body?", answer: "skin" },
-            { clue: "18. Who wrote the play 'Romeo and Juliet'?", answer: "shakespeare" },
-            { clue: "19. What is the chemical symbol for Gold?", answer: "au" },
-            { clue: "20. What force keeps us grounded on Earth?", answer: "gravity" },
-            { clue: "21. How many continents are on Earth?", answer: "7" },
-            { clue: "22. What animal is known as the King of the Jungle?", answer: "lion" },
-            { clue: "23. What is the freezing point of water in degrees Celsius?", answer: "0" },
-            { clue: "24. What primary language is spoken in Brazil?", answer: "portuguese" },
-            { clue: "25. Which instrument has black and white keys and pedals?", answer: "piano" }
+            { clue: "1. Whose Peekaboo's father?", answer: "haru" },
+            { clue: "2. What was the home contry of the princess and ex 2 prince?", answer: "lapona" },
+            { clue: "3. Who was the anomaly that recently plage JP tkdb's media? ", answer: "Takeru" },
+            { clue: "4. What is the name to the left hand?", answer: "podge" },
+            { clue: "5. who owned a metal pipe as an artifact?", answer: "alan mido" },
+            { clue: "6. What is Jin's favorite subject?", answer: "Anomalous Information Studies" },
+            { clue: "7. Did Romeo have a sister?", answer: "yes" },
+            { clue: "8. What way is Elias' right eye pupli is pointing?", answer: "up" },
+            { clue: "9. What is the episode name of the scene where ren drop the ipad on his face? Note: Don't use number", answer: "Our Last Goodbye Act I" },
+            { clue: "10. What flower is Subaru's earring?", answer: "wisteria" },
+            { clue: "11. What is Zenji's little doll name?", answer: "saburo" },
+            { clue: "12. Whose the Mc's curse twin?", answer: "rui Mizuki" },
+            { clue: "13. What house did Tohma og belong to?", answer: "vagastrom" },
+            { clue: "14. Who did Leo attend middle school with?", answer: "Shohei Haizono" },
+            { clue: "15. What restaurant did Haku wanted to open if he could leave? Note: Two worded answer, second word is restaurant ", answer: "ramen restaurant" },
+            { clue: "16. Who did Subaru visit across the hotarubi's lake?", answer: "Lyca Colt" },
+            { clue: "17. What does Towa call MC? ", answer: "dandelion " },
+            { clue: "18. What blood type is Taiga?", answer: "O" },
+            { clue: "19. What star sign is Kaito?", answer: "sagittarius" },
+            { clue: "20. What pocket does Ritsu keep his recorder?", answer: "left" },
+            { clue: "21. Did Lucas flipped/body slam Kaito into the ground in the first episode? ", answer: "yes" },
+            { clue: "22. What fae type is Edward?", answer: "vampire" },
+            { clue: "23. How many dots dose Shion have under his eye?", answer: "3" },
+            { clue: "24. What is the name of Sho's artifact?", answer: "Bonnie" },
+            { clue: "25. Who built majority of the gambling machine in sinostra?", answer: "Mio Susuhara" }
+            { clue: "26. ", answer: "piano" }
         ];
 
         let currentStep = 0;
