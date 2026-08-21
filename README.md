@@ -1,2 +1,1 @@
-Happy birthday lexeigh? lexeigh, lexegih?
-I may be broke but i code better than your students
+I have much more talent than you believe i have LOLLL
