@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Scavenger Hunt</title>
+    <title>25-Clue Digital Scavenger Hunt</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,13 +14,15 @@
             align-items: center;
             min-height: 100vh;
             margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
         }
         .card {
             background: #ffffff;
             padding: 30px;
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            max-width: 450px;
+            max-width: 500px;
             width: 100%;
             text-align: center;
         }
@@ -32,11 +34,12 @@
         }
         .clue-box {
             background-color: #eef2f5;
-            padding: 15px;
+            padding: 18px;
             border-left: 5px solid #007bff;
             border-radius: 4px;
             margin-bottom: 20px;
             font-size: 1.1em;
+            line-height: 1.4;
         }
         input[type="text"] {
             width: 80%;
@@ -61,6 +64,7 @@
         .feedback {
             margin-top: 15px;
             font-weight: bold;
+            min-height: 24px;
         }
         .correct { color: #28a745; }
         .incorrect { color: #dc3545; }
@@ -70,10 +74,8 @@
 <body>
 
     <div class="card" id="game-card">
-        <div class="progress" id="progress-text">Clue 1 of 3</div>
-        <div class="clue-box" id="clue-text">
-            I have hands, but I cannot clap. What am I?
-        </div>
+        <div class="progress" id="progress-text">Clue 1 of 25</div>
+        <div class="clue-box" id="clue-text">Loading clue...</div>
         
         <input type="text" id="answer-input" placeholder="Type your answer here..." autocomplete="off">
         <br>
@@ -83,20 +85,49 @@
     </div>
 
     <div class="card hidden" id="victory-card">
-        <h2>🎉 Congratulations!</h2>
-        <p>You solved all the clues and completed the scavenger hunt!</p>
+        <h2>🎉 Ultimate Champion!</h2>
+        <p>You successfully solved all 25 clues and finished the scavenger hunt!</p>
         <button onclick="restartGame()">Play Again</button>
     </div>
 
     <script>
-        // Define your clues and answers here
+        // 25 Clues and accepted answers
         const huntData = [
-            { clue: "I have hands, but I cannot clap. What am I?", answer: "clock" },
-            { clue: "The more of me you take, the more you leave behind. What am I?", answer: "footsteps" },
-            { clue: "I have a neck, but no head. What am I?", answer: "bottle" }
+            { clue: "1. I have hands, but I cannot clap. What am I?", answer: "clock" },
+            { clue: "2. The more of me you take, the more you leave behind. What am I?", answer: "footsteps" },
+            { clue: "3. I have a neck, but no head. What am I?", answer: "bottle" },
+            { clue: "4. What has to be broken before you can use it?", answer: "egg" },
+            { clue: "5. I’m tall when I’m young, and I’m short when I’m old. What am I?", answer: "candle" },
+            { clue: "6. What is full of holes but still holds water?", answer: "sponge" },
+            { clue: "7. What question can you never answer yes to?", answer: "are you asleep" },
+            { clue: "8. What is always in front of you but can’t be seen?", answer: "future" },
+            { clue: "9. There’s a one-story house where everything is yellow. What color are the stairs?", answer: "no stairs" },
+            { clue: "10. What can you break, even if you never pick it up or touch it?", answer: "promise" },
+            { clue: "11. What goes up but never comes down?", answer: "age" },
+            { clue: "12. A man walks out into the pouring rain without an umbrella or hat, but not a single hair on his head gets wet. Why?", answer: "bald" },
+            { clue: "13. What gets wet while drying?", answer: "towel" },
+            { clue: "14. What can you keep after giving it to someone?", answer: "word" },
+            { clue: "15. I shaved 10 times today, but I still have a beard. What am I?", answer: "barber" },
+            { clue: "16. I have branches, but no fruit, trunk, or leaves. What am I?", answer: "bank" },
+            { clue: "17. What can’t talk, but will reply when spoken to?", answer: "echo" },
+            { clue: "18. The more of this there is, the less you see. What is it?", answer: "darkness" },
+            { clue: "19. David’s parents have three sons: Snap, Crackle, and what's the name of the third son?", answer: "david" },
+            { clue: "20. What has many keys but can’t open a single lock?", answer: "piano" },
+            { clue: "21. What can travel all around the world while staying in a corner?", answer: "stamp" },
+            { clue: "22. What has a head and a tail, but no body?", answer: "coin" },
+            { clue: "23. What has a thumb and four fingers, but is not a living thing?", answer: "glove" },
+            { clue: "24. What has one eye, but can’t see?", answer: "needle" },
+            { clue: "25. What comes once in a minute, twice in a moment, but never in a thousand years?", answer: "m" }
         ];
 
         let currentStep = 0;
+
+        function updateCard() {
+            document.getElementById("progress-text").textContent = `Clue ${currentStep + 1} of ${huntData.length}`;
+            document.getElementById("clue-text").textContent = huntData[currentStep].clue;
+            document.getElementById("answer-input").value = "";
+            document.getElementById("feedback-text").textContent = "";
+        }
 
         function checkAnswer() {
             const inputField = document.getElementById("answer-input");
@@ -104,7 +135,8 @@
             const userAnswer = inputField.value.trim().toLowerCase();
             const correctAnswer = huntData[currentStep].answer.toLowerCase();
 
-            if (userAnswer === correctAnswer) {
+            // Check if the input contains the answer keyword
+            if (userAnswer.includes(correctAnswer) && userAnswer !== "") {
                 feedback.className = "feedback correct";
                 feedback.textContent = "Correct! Moving to the next clue...";
                 
@@ -115,18 +147,11 @@
                     } else {
                         showVictory();
                     }
-                }, 1200);
+                }, 1000);
             } else {
                 feedback.className = "feedback incorrect";
                 feedback.textContent = "Try again!";
             }
-        }
-
-        function updateCard() {
-            document.getElementById("progress-text").textContent = `Clue ${currentStep + 1} of ${huntData.length}`;
-            document.getElementById("clue-text").textContent = huntData[currentStep].clue;
-            document.getElementById("answer-input").value = "";
-            document.getElementById("feedback-text").textContent = "";
         }
 
         function showVictory() {
@@ -141,12 +166,15 @@
             updateCard();
         }
 
-        // Allow pressing "Enter" key to submit
+        // Keypress event for Enter key
         document.getElementById("answer-input").addEventListener("keypress", function(event) {
             if (event.key === "Enter") {
                 checkAnswer();
             }
         });
+
+        // Initialize first clue
+        updateCard();
     </script>
 
 </body>
